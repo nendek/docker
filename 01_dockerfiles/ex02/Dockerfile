@@ -1,18 +1,7 @@
-FROM ruby:latest
+FROM ft-rails:on-build
 
-RUN apt-get update && \
-	apt-get install nodejs -y && \
-	gem install rails
+EXPOSE 3000
+CMD ["rails", "s", "-b", "0.0.0.0", "-p" ,"3000"]
 
-RUN mkdir /opt/app
-
-ONBUILD WORKDIR /opt/app
-
-ONBUILD ADD app/ /opt/app
-
-ONBUILD RUN bundle install
-
-ONBUILD RUN bundle install && \
-		rake db:migrate && \
-		rake db:setup && \
-		rake db:seed
+# docker build -t ex02 .
+# docker run -it --rm -p 3000:3000 ex02

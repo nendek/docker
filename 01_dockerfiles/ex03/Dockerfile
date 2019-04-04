@@ -11,3 +11,6 @@ RUN apt-get update -q && \
 EXPOSE 22 80 443
 
 ENTRYPOINT ["gitlab-ctl","reconfigure"]
+
+#docker build -t .
+#docker run -it --rm -p 80:80 -p 21:22 .
